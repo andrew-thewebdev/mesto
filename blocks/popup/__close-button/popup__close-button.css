@@ -11,3 +11,15 @@
   right: -40px;
   cursor: pointer;
 }
+
+.popup__close-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__close-button {
+    background-size: 20px 20px;
+    right: -12px;
+    top: -28px;
+  }
+}
