@@ -6,6 +6,7 @@
 
 - Figma
 - Технологии
+- Ссылка на GitHub
 
 **Figma**
 
@@ -13,7 +14,11 @@
 
 **Технологии**
 
-HTML
-CSS
-Адаптивная верстка
+HTML,
+CSS,
+Адаптивная верстка,
 Javascript
+
+**Ссылка на GitHub**
+
+- [Ссылка на GitHub](https://andrew-thewebdev.github.io/mesto/)
