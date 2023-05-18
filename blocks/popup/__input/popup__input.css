@@ -1,10 +1,10 @@
-.popup__description {
+.popup__input {
   box-sizing: border-box;
   padding: 0;
-  padding-bottom: 13px;
-  padding-top: 8px;
-  margin-top: 22px;
-  font-family: 'Inter';
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-top: 20px;
+  font-family: 'Inter', ‘Arial’, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
