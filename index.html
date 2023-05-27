@@ -24,50 +24,9 @@
       </div>
       <button type="button" class="profile__add-button"></button>
     </section>
-    <section class="cards">
-      <!-- <article class="card">
-        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фото Карачаевска" class="card__image">
-        <div class="card__footer">
-          <h2 class="card__title">Карачаевск</h2>
-          <button type="button" class="card__like-icon"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Фото Эльбруса" class="card__image">
-        <div class="card__footer">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button type="button" class="card__like-icon"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Фото Домбай" class="card__image">
-        <div class="card__footer">
-          <h2 class="card__title">Домбай</h2>
-          <button type="button" class="card__like-icon"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Фото Эльбруса" class="card__image">
-        <div class="card__footer">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button type="button" class="card__like-icon"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Фото Домбай" class="card__image">
-        <div class="card__footer">
-          <h2 class="card__title">Домбай</h2>
-          <button type="button" class="card__like-icon"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фото Карачаевска" class="card__image">
-        <div class="card__footer">
-          <h2 class="card__title">Карачаево-Черкессия</h2>
-          <button type="button" class="card__like-icon card__like-icon_active"></button>
-        </div>
-      </article> -->
-    </section>
+
+    <div class="cards"></div>
+  
   </main>
   <footer class="footer page__section">
     <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
@@ -97,9 +56,17 @@
     </div>
   </section>
 
-  <template class="card-template">
+  <section class="popup-photo">
+    <div class="popup-photo__container">
+      <p class="popup-photo__title"></p>
+      <button type="button" class="popup-photo__close-button"></button>
+    </div>
+  </section>
+
+  <template id="card-template">
     <article class="card">
       <img src="" alt="" class="card__image">
+      <button class="card__delete"></button>
       <div class="card__footer">
         <h2 class="card__title"></h2>
         <button type="button" class="card__like-icon"></button>

@@ -1,0 +1,16 @@
+.popup-photo__container {
+  /* margin-left: 19px;
+  margin-right: 19px; */
+  /* margin: 0 auto; */
+  width: calc(100% - 25vw);
+  height: calc(100% - 25vh);;
+  max-width: 75vw;
+  max-height: 75vh;
+
+  background-image: url(../../../images/kirill-pershin-1088404-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+
+  position: relative;
+}
