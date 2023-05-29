@@ -8,4 +8,9 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,.9);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+  transition-delay: 0.5s, 0s;
 }
