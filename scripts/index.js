@@ -24,11 +24,11 @@ const cardArticle = cardTemplateContent.querySelector('.card');
 
 const cards = document.querySelector('.cards');
 
-const popupPhoto = document.querySelector('.popup-photo');
-const popupPhotoImg = document.querySelector('.popup-photo__img');
-const popupPhotoTitle = document.querySelector('.popup-photo__title');
+const popupPhoto = document.querySelector('.popup_type_photo');
+const popupPhotoImg = document.querySelector('.popup__photo');
+const popupPhotoTitle = document.querySelector('.popup__photo-title');
 const popupPhotoCloseButton = document.querySelector(
-  '.popup-photo__close-button'
+  '.popup__close-button_type_photo'
 );
 
 const initialCards = [
@@ -69,13 +69,14 @@ cardCloseButton.addEventListener('click', closeCard);
 popupPhotoCloseButton.addEventListener('click', closePopupImage);
 
 function openProfileToEdit() {
-  popup.classList.add('popup_opened');
+  openModalWindow(popup);
+
   popupName.value = profileName.textContent;
   popupDescr.value = profileDescr.textContent;
 }
 
 function closeProfile() {
-  popup.classList.remove('popup_opened');
+  closeModalWindow(popup);
 }
 
 function profileSubmitHandler(event) {
@@ -107,7 +108,8 @@ function createCard(card) {
   });
 
   newCardImage.addEventListener('click', function (event) {
-    popupPhoto.classList.add('popup-photo_opened');
+    openModalWindow(popupPhoto);
+
     popupPhotoImg.src = event.target.src;
     popupPhotoImg.alt = event.target.alt;
     popupPhotoTitle.textContent = event.target.alt;
@@ -121,11 +123,11 @@ function createCard(card) {
 }
 
 function addCard() {
-  newCardPopup.classList.add('popup_opened');
+  openModalWindow(newCardPopup);
 }
 
 function closeCard() {
-  newCardPopup.classList.remove('popup_opened');
+  closeModalWindow(newCardPopup);
 }
 
 function newCardSubmitHandler(event) {
@@ -144,5 +146,13 @@ function newCardSubmitHandler(event) {
 }
 
 function closePopupImage() {
-  popupPhoto.classList.remove('popup-photo_opened');
+  closeModalWindow(popupPhoto);
+}
+
+function openModalWindow(modalWindow) {
+  modalWindow.classList.add('popup_opened');
+}
+
+function closeModalWindow(modalWindow) {
+  modalWindow.classList.remove('popup_opened');
 }
