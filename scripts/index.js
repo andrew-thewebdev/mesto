@@ -68,6 +68,27 @@ cardCloseButton.addEventListener('click', closeCard);
 
 popupPhotoCloseButton.addEventListener('click', closePopupImage);
 
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
+    const overlayList = Array.from(document.querySelectorAll('.popup'));
+    overlayList.forEach((overlay) => {
+      if (overlay.classList.contains('popup_opened')) {
+        closeModalWindow(overlay);
+      }
+    });
+  }
+}
+
+function openModalWindow(modalWindow) {
+  modalWindow.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
+}
+
+function closeModalWindow(modalWindow) {
+  modalWindow.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
+}
+
 function openProfileToEdit() {
   openModalWindow(popup);
 
@@ -86,11 +107,6 @@ function profileSubmitHandler(event) {
 
   closeProfile();
 }
-
-initialCards.forEach(function (cardItem) {
-  const newCardCreated = createCard(cardItem);
-  cards.prepend(newCardCreated);
-});
 
 function createCard(card) {
   const newCard = cardArticle.cloneNode(true);
@@ -122,12 +138,21 @@ function createCard(card) {
   return newCard;
 }
 
+initialCards.forEach(function (cardItem) {
+  const newCardCreated = createCard(cardItem);
+  cards.prepend(newCardCreated);
+});
+
 function addCard() {
   openModalWindow(newCardPopup);
 }
 
 function closeCard() {
   closeModalWindow(newCardPopup);
+}
+
+function closePopupImage() {
+  closeModalWindow(popupPhoto);
 }
 
 function newCardSubmitHandler(event) {
@@ -145,14 +170,16 @@ function newCardSubmitHandler(event) {
   closeCard();
 }
 
-function closePopupImage() {
-  closeModalWindow(popupPhoto);
-}
+const enablePopupCloseByOverlayClick = () => {
+  const overlayList = Array.from(document.querySelectorAll('.popup'));
+  overlayList.forEach((overlay) => {
+    overlay.addEventListener('click', function (evt) {
+      if (evt.target.classList.contains('popup')) {
+        // console.log('overlay clicked!!');
+        closeModalWindow(overlay);
+      }
+    });
+  });
+};
 
-function openModalWindow(modalWindow) {
-  modalWindow.classList.add('popup_opened');
-}
-
-function closeModalWindow(modalWindow) {
-  modalWindow.classList.remove('popup_opened');
-}
+enablePopupCloseByOverlayClick();
