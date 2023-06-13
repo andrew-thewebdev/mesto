@@ -31,10 +31,22 @@ function hasInvalidInput(inputList) {
   });
 }
 
+function disableButton(buttonElement, config) {
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
+function enableButton(buttonElement, config) {
+  buttonElement.classList.remove(config.inactiveButtonClass);
+  buttonElement.disabled = false;
+}
+
 function toggleButtonState(inputList, buttonElement, props) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(props.inactiveButtonClass);
-  } else buttonElement.classList.remove(props.inactiveButtonClass);
+    disableButton(buttonElement, props);
+  } else {
+    enableButton(buttonElement, props);
+  }
 }
 
 const setEventListeners = (formElement, props) => {
@@ -57,6 +69,10 @@ const enableValidation = (props) => {
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
+      const submitButton = formElement.querySelector(
+        props.submitButtonSelector
+      );
+      disableButton(submitButton, props);
     });
     setEventListeners(formElement, props);
   });

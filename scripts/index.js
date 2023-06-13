@@ -1,5 +1,5 @@
 const profileEditButton = document.querySelector('.profile__edit-button');
-const popup = document.querySelector('.popup_type_edit-profile');
+const profileEditPopup = document.querySelector('.popup_type_edit-profile');
 const profileCloseButton = document.querySelector(
   '.popup__close-button_type_profile'
 );
@@ -22,7 +22,7 @@ const cardTemplate = document.querySelector('#card-template');
 const cardTemplateContent = cardTemplate.content;
 const cardArticle = cardTemplateContent.querySelector('.card');
 
-const cards = document.querySelector('.cards');
+const cardsContainer = document.querySelector('.cards');
 
 const popupPhoto = document.querySelector('.popup_type_photo');
 const popupPhotoImg = document.querySelector('.popup__photo');
@@ -90,14 +90,14 @@ function closeModalWindow(modalWindow) {
 }
 
 function openProfileToEdit() {
-  openModalWindow(popup);
+  openModalWindow(profileEditPopup);
 
   popupName.value = profileName.textContent;
   popupDescr.value = profileDescr.textContent;
 }
 
 function closeProfile() {
-  closeModalWindow(popup);
+  closeModalWindow(profileEditPopup);
 }
 
 function profileSubmitHandler(event) {
@@ -120,7 +120,7 @@ function createCard(card) {
   });
 
   newCardDeleteButton.addEventListener('click', function (event) {
-    cards.removeChild(newCard);
+    cardsContainer.removeChild(newCard);
   });
 
   newCardImage.addEventListener('click', function (event) {
@@ -140,7 +140,7 @@ function createCard(card) {
 
 initialCards.forEach(function (cardItem) {
   const newCardCreated = createCard(cardItem);
-  cards.prepend(newCardCreated);
+  cardsContainer.prepend(newCardCreated);
 });
 
 function addCard() {
@@ -164,7 +164,7 @@ function newCardSubmitHandler(event) {
   const form = event.target;
 
   const newCard = createCard(newCardObj);
-  cards.prepend(newCard);
+  cardsContainer.prepend(newCard);
 
   form.reset();
   closeCard();
@@ -175,7 +175,6 @@ const enablePopupCloseByOverlayClick = () => {
   overlayList.forEach((overlay) => {
     overlay.addEventListener('click', function (evt) {
       if (evt.target.classList.contains('popup')) {
-        // console.log('overlay clicked!!');
         closeModalWindow(overlay);
       }
     });
