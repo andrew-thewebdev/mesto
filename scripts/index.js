@@ -74,6 +74,9 @@ function closeByEsc(evt) {
     overlayList.forEach((overlay) => {
       if (overlay.classList.contains('popup_opened')) {
         closeModalWindow(overlay);
+
+        const form = overlay.querySelector('.popup__form');
+        form.reset();
       }
     });
   }
