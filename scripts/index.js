@@ -1,3 +1,6 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileEditPopup = document.querySelector('.popup_type_edit-profile');
 const profileCloseButton = document.querySelector(
@@ -18,15 +21,15 @@ const cardCloseButton = document.querySelector(
   '.popup__close-button_type_card'
 );
 
-const cardTemplate = document.querySelector('#card-template');
-const cardTemplateContent = cardTemplate.content;
-const cardArticle = cardTemplateContent.querySelector('.card');
+// const cardTemplate = document.querySelector('#card-template');
+// const cardTemplateContent = cardTemplate.content;
+// const cardArticle = cardTemplateContent.querySelector('.card');
 
 const cardsContainer = document.querySelector('.cards');
 
 const popupPhoto = document.querySelector('.popup_type_photo');
-const popupPhotoImg = document.querySelector('.popup__photo');
-const popupPhotoTitle = document.querySelector('.popup__photo-title');
+// const popupPhotoImg = document.querySelector('.popup__photo');
+// const popupPhotoTitle = document.querySelector('.popup__photo-title');
 const popupPhotoCloseButton = document.querySelector(
   '.popup__close-button_type_photo'
 );
@@ -76,7 +79,9 @@ function closeByEsc(evt) {
         closeModalWindow(overlay);
 
         const form = overlay.querySelector('.popup__form');
-        form.reset();
+        if (form !== null) {
+          form.reset();
+        }
       }
     });
   }
@@ -90,6 +95,11 @@ function openModalWindow(modalWindow) {
 function closeModalWindow(modalWindow) {
   modalWindow.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
+
+  const form = modalWindow.querySelector('.popup__form');
+  if (form !== null) {
+    form.reset();
+  }
 }
 
 function openProfileToEdit() {
@@ -111,39 +121,11 @@ function profileSubmitHandler(event) {
   closeProfile();
 }
 
-function createCard(card) {
-  const newCard = cardArticle.cloneNode(true);
-  const newCardImage = newCard.querySelector('.card__image');
-  const newCardTitle = newCard.querySelector('.card__title');
-  const newCardLikeIcon = newCard.querySelector('.card__like-icon');
-  const newCardDeleteButton = newCard.querySelector('.card__delete');
+initialCards.forEach((item) => {
+  const newCard = new Card(item, '#card-template', openModalWindow);
+  const cardElement = newCard.generate();
 
-  newCardLikeIcon.addEventListener('click', function (event) {
-    event.target.classList.toggle('card__like-icon_active');
-  });
-
-  newCardDeleteButton.addEventListener('click', function (event) {
-    cardsContainer.removeChild(newCard);
-  });
-
-  newCardImage.addEventListener('click', function (event) {
-    openModalWindow(popupPhoto);
-
-    popupPhotoImg.src = event.target.src;
-    popupPhotoImg.alt = event.target.alt;
-    popupPhotoTitle.textContent = event.target.alt;
-  });
-
-  newCardImage.src = card.link;
-  newCardImage.alt = card.name;
-  newCardTitle.textContent = card.name;
-
-  return newCard;
-}
-
-initialCards.forEach(function (cardItem) {
-  const newCardCreated = createCard(cardItem);
-  cardsContainer.prepend(newCardCreated);
+  cardsContainer.prepend(cardElement);
 });
 
 function addCard() {
@@ -166,8 +148,9 @@ function newCardSubmitHandler(event) {
   };
   const form = event.target;
 
-  const newCard = createCard(newCardObj);
-  cardsContainer.prepend(newCard);
+  const newCard = new Card(newCardObj, '#card-template', openModalWindow);
+  const cardElement = newCard.generate();
+  cardsContainer.prepend(cardElement);
 
   form.reset();
   closeCard();
@@ -185,3 +168,31 @@ const enablePopupCloseByOverlayClick = () => {
 };
 
 enablePopupCloseByOverlayClick();
+
+const profileValidator = new FormValidator(
+  {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_inactive',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active',
+  },
+  '.popup_type_edit-profile'
+);
+
+profileValidator.enableValidation();
+
+const newPlaceValidator = new FormValidator(
+  {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_inactive',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active',
+  },
+  '.popup_type_add-card'
+);
+
+newPlaceValidator.enableValidation();
