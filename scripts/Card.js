@@ -19,9 +19,11 @@ export default class Card {
   generate() {
     this._element = this._getElement();
 
-    const newCardImage = this._element.querySelector('.card__image');
-    newCardImage.src = this._image;
-    newCardImage.alt = this._text;
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._text;
+
+    this._buttonLike = this._element.querySelector('.card__like-icon');
 
     const newCardTitle = this._element.querySelector('.card__title');
     newCardTitle.textContent = this._text;
@@ -32,17 +34,13 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector('.card__image')
-      .addEventListener('click', (evt) => {
-        this._handleClickOnImage(evt);
-      });
+    this._cardImage.addEventListener('click', (evt) => {
+      this._handleClickOnImage(evt);
+    });
 
-    this._element
-      .querySelector('.card__like-icon')
-      .addEventListener('click', () => {
-        this._handleClickOnLike();
-      });
+    this._buttonLike.addEventListener('click', () => {
+      this._handleClickOnLike();
+    });
 
     this._element
       .querySelector('.card__delete')
@@ -60,12 +58,11 @@ export default class Card {
   }
 
   _handleClickOnLike() {
-    this._element
-      .querySelector('.card__like-icon')
-      .classList.toggle('card__like-icon_active');
+    this._buttonLike.classList.toggle('card__like-icon_active');
   }
 
   _handleClickOnDeleteButton() {
-    document.querySelector('.cards').removeChild(this._element);
+    this._element.remove();
+    this._element = null;
   }
 }
