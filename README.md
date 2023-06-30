@@ -1,24 +1,15 @@
-# Проект: Место
+# 🚀 Welcome to your new awesome project!
 
-Интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
+This project has been created using **webpack-cli**, you can now run
 
-### Обзор
+```
+npm run build
+```
 
-- Figma
-- Технологии
-- Ссылка на GitHub
+or
 
-**Figma**
+```
+yarn build
+```
 
-- [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Технологии**
-
-HTML,
-CSS,
-Адаптивная верстка,
-Javascript
-
-**Ссылка на GitHub**
-
-- [Ссылка на GitHub](https://andrew-thewebdev.github.io/mesto/)
+to bundle your application

@@ -1,10 +1,10 @@
 export default class Card {
-  constructor(data, selector, openModalWindow) {
+  constructor(data, selector, handleCardClick) {
     this._text = data.name;
     this._image = data.link;
     this._selector = selector;
 
-    this._openModalWindow = openModalWindow;
+    this._handleCardClick = handleCardClick;
   }
 
   _getElement() {
@@ -35,7 +35,7 @@ export default class Card {
 
   _setEventListeners() {
     this._cardImage.addEventListener('click', (evt) => {
-      this._handleClickOnImage(evt);
+      this._handleCardClick(evt);
     });
 
     this._buttonLike.addEventListener('click', () => {
@@ -49,12 +49,8 @@ export default class Card {
       });
   }
 
-  _handleClickOnImage(evt) {
-    this._openModalWindow(document.querySelector('.popup_type_photo'));
-
-    document.querySelector('.popup__photo').src = evt.target.src;
-    document.querySelector('.popup__photo').alt = evt.target.alt;
-    document.querySelector('.popup__photo-title').textContent = evt.target.alt;
+  _handleCardClick(evt) {
+    console.log('card clicked');
   }
 
   _handleClickOnLike() {
