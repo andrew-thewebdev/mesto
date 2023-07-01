@@ -69,13 +69,18 @@ popupProfile.setEventListeners();
 const popupWithImage = new PopupWithImage('.popup_type_photo');
 popupWithImage.setEventListeners();
 
+function createCard(item) {
+  const newCard = new Card(item, '#card-template', (evt) => {
+    popupWithImage.open(evt);
+  });
+  const cardElement = newCard.generate();
+  return cardElement;
+}
+
 const popupAddNewCard = new PopupWithForm(
   '.popup_type_add-card',
   (formData) => {
-    const newCard = new Card(formData, '#card-template', (evt) => {
-      popupWithImage.open(evt);
-    });
-    const cardElement = newCard.generate();
+    const cardElement = createCard(formData);
     cardList.addItem(cardElement);
 
     popupAddNewCard.close();
@@ -87,10 +92,7 @@ const cardList = new Section(
   {
     items: initialCards,
     renderer: (cardItem) => {
-      const newCard = new Card(cardItem, '#card-template', (evt) => {
-        popupWithImage.open(evt);
-      });
-      const cardElement = newCard.generate();
+      const cardElement = createCard(cardItem);
       cardList.addItem(cardElement);
     },
   },
