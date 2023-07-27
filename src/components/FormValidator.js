@@ -39,7 +39,7 @@ export default class FormValidator {
 
   _formSubmit(evt) {
     evt.preventDefault();
-    this._disableButton();
+    // this._disableButton();
   }
 
   _showInputError = (inputElement, errorMessage) => {

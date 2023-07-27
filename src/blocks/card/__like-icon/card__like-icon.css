@@ -9,7 +9,7 @@
   background-color: transparent;
   background-position: center;
 
-  margin-left: auto;
+  /* margin-left: auto; */
 }
 
 .card__like-icon:hover {
