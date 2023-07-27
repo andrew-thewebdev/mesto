@@ -15,9 +15,6 @@ export default class PopupWithForm extends Popup {
       (input) => (this._formValues[input.name] = input.value)
     );
 
-    //Добавляем нулевой массив лайков
-    this._formValues['likes'] = [];
-
     return this._formValues;
   }
 
@@ -34,15 +31,15 @@ export default class PopupWithForm extends Popup {
       this._saveButton.textContent = 'Сохранение...';
     } else if (!isLoading) {
       this._saveButton.textContent = 'Сохранить';
-      this._saveButton.classList.add('popup__save-button_inactive');
-      this._saveButton.disabled = true;
+      // this._saveButton.classList.add('popup__save-button_inactive');
+      // this._saveButton.disabled = true;
     }
   }
 
   close() {
     super.close();
-    this._saveButton.classList.add('popup__save-button_inactive');
-    this._saveButton.disabled = true;
+    // this._saveButton.classList.add('popup__save-button_inactive');
+    // this._saveButton.disabled = true;
     this._form.reset();
   }
 }
